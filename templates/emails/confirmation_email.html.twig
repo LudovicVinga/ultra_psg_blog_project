@@ -1,0 +1,22 @@
+<h1>Confirmation de votre email.</h1>
+
+<p>
+        Bonjour,
+
+    Merci de vous être inscrit(e) sur notre plateforme !
+    Pour finaliser votre inscription et confirmer votre adresse email, veuillez cliquer sur le lien ci-dessous :
+</p>
+
+<p>
+    <a href="{{ signedUrl|raw }}">Confirmer mon email</a>.
+    Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData, 'VerifyEmailBundle') }}.
+</p>
+
+<p>
+    Si vous n’êtes pas à l’origine de cette demande, veuillez ignorer ce message.
+</p>
+
+<p>
+    Merci et à bientôt,
+    L’équipe Ultra PSG <br><br>
+</p>
