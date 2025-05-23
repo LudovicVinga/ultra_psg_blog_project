@@ -45,7 +45,7 @@
     </head>
     <body class="body-visitor bg-light">
         {# Navbar #}
-        <nav class="navbar navbar-expand-lg bg-white shadow mb-5">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow mb-5 py-3">
             <div class="container-fluid">
                 <a class="navbar-brand" href="{{path('app_visitor_welcome')}}">ULTRA PSG</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +71,7 @@
                             <a class="nav-link" aria-current="page" href="#">Connexion</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Inscription</a>
+                            <a class="nav-link" href="{{path('app_register')}}">Inscription</a>
                         </li>
                     </ul>
                 </div>
