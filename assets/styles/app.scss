@@ -1,4 +1,5 @@
-$primary: #004170;
+// Abstracts
+@import "./abstracts/variables";
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
