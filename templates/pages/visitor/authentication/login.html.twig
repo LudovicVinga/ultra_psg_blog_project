@@ -1,0 +1,66 @@
+{% extends 'themes/base_visitor_auth_registration.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block description %}Accédez à votre compte en toute sécurité. Connectez-vous pour profiter de tous nos services et gérer facilement vos informations personnelles.{% endblock %}
+
+{% block keywords %}connexion, login, accès, authentification, compte, espace membre, identifiant, mot de passe, sécurité, se connecter, page de connexion, utilisateur, accès sécurisé, connexion compte{% endblock %}
+
+{% block main %}
+
+    {# title #}
+    <div class="text-center mb-3">
+        <h1 class="text-danger display-5 fw-bold fst-italic">CONNEXION</h1>
+        <h4 class="text-primary">Connectez-vous et vivez l’actualité du Paris Saint-Germain au plus près</h4>
+    </div>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-6 text-center d-flex flex-column justify-content-center align-items-center">
+                {# Img #}
+                <img src="/images/static/login/ici-cest-paris.jpg" class="img-fluid border border-5 border-danger shadow" alt="Mention - 'Ici c'est Paris'">
+            </div>
+
+            <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center">
+                {# Form #}
+                <form method="post" class="login-form">
+                    {% if error %}
+                        <div class="alert alert-danger text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% include 'components/alert.html.twig' %}
+
+                    <div class="mb-3">
+                        <label for="inputEmail">Email</label>
+                        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputPassword">Mot de passe</label>
+                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+
+                    <div class="mb-3">
+                        <label>
+                            <input type="checkbox" name="_remember_me"> Se souvenir de moi 
+                        </label>
+                    </div>
+
+                    <div>
+                        <button formnovalidate class="btn btn-lg btn-primary w-100 shadow" type="submit">
+                            Se connecter
+                        </button>
+                    </div>
+                </form>
+
+                {# Links #}
+                <div class="text-center mt-3">
+                    <p>Vous n'avez pas encore de compte ? <a href="{{path('app_register')}}">Inscrivez-vous</a></p>
+                    <p><a href="{{path('app_visitor_welcome')}}">Retour à l'accueil</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
