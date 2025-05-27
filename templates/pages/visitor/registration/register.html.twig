@@ -10,7 +10,7 @@
 
     {# title #}
     <div class="text-center mb-3">
-        <h1 class="text-primary display-5 fw-bold">Inscription</h1>
+        <h1 class="text-danger display-5 fw-bold fst-italic">INSCRIPTION</h1>
         <h4 class="text-primary">Rejoignez la communauté des passionnées du PSG </h4>
     </div>
 
@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-lg-6 text-center d-flex flex-column justify-content-center align-items-center">
                 {# Img #}
-                <img src="/images/static/registration/parc-des-princes.png" class="img-fluid border border-5 border-primary shadow" alt="Mention - 'Ici c'est Paris'">
+                <img src="/images/static/registration/parc-des-princes.png" class="img-fluid border border-5 border-primary shadow" alt="Photographie de l'interieur du stade du Paris saint-Germain : Parc des princes">
             </div>
 
             {% for flash_error in app.flashes('verify_email_error') %}
@@ -154,7 +154,7 @@
 
                 {# Links #}
                 <div class="text-center mt-3">
-                    <p>Vous avez déjà un compte ? <a href="">Connectez-vous</a></p>
+                    <p>Vous avez déjà un compte ? <a href="{{path('app_login')}}">Connectez-vous</a></p>
                     <p><a href="{{path('app_visitor_welcome')}}">Retour à l'accueil</a></p>
                 </div>
             </div>
