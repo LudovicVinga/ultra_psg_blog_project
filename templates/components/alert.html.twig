@@ -1,6 +1,10 @@
+{# On parcourt toutes les catégories de messages flash stockées dans la session (par exemple : 'success', 'error', etc.) #}
 {% for label, messages in app.flashes %}
     {% for message in messages %}
+        {# On crée une alerte Bootstrap avec la classe correspondant au label (success, danger, info, etc.) #}
         <div class="alert alert-{{label}} alert-dismissible fade show text-center" role="alert">
+
+            {# On affiche le contenu du message flash #}
             {{message}}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>

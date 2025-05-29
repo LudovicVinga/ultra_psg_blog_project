@@ -26,19 +26,23 @@ class RegistrationController extends AbstractController
     #[Route('/inscription', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        // Si l'utilisateur est déjà connecté, on le redirige vers la page d'accueil
         if ($this->getUser()) {
             return $this->redirectToRoute('app_visitor_welcome');
         }
 
         $user = new User();
+        // On crée le formulaire d'inscription lié à cet utilisateur
         $form = $this->createForm(RegistrationForm::class, $user);
+        // On traite la requête HTTP (remplissage du formulaire)
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // On récupère le mot de passe brut saisi par l'utilisateur
             /** @var string $plainPassword */
             $plainPassword = $form->get('password')->getData();
 
-            // encode the plain password
+            // On encode le mot de passe et on le stocke dans l'entité User
             $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
 
             $user->setRoles(['ROLE_USER']);
@@ -49,7 +53,7 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // generate a signed url and email it to the user
+            // On envoie un email de confirmation avec un lien sécurisé
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('ultra-psg@gmail.com', 'Luis Enrique'))
@@ -58,6 +62,7 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('emails/confirmation_email.html.twig')
             );
 
+            // On redirige l'utilisateur vers une page qui lui demande de vérifier son email
             return $this->redirectToRoute('app_register_waiting_for_email_verification');
         }
 
@@ -75,28 +80,30 @@ class RegistrationController extends AbstractController
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request, TranslatorInterface $translator, UserRepository $userRepository): Response
     {
+        // On récupère l'ID de l'utilisateur depuis l'URL
         $id = $request->query->get('id');
 
         if (null === $id) {
             return $this->redirectToRoute('app_register');
         }
 
+        // On cherche l'utilisateur correspondant à cet ID
         $user = $userRepository->find($id);
 
         if (null === $user) {
             return $this->redirectToRoute('app_register');
         }
 
-        // validate email confirmation link, sets User::isVerified=true and persists
         try {
+            // Cette méthode va vérifier le lien, activer le compte, et enregistrer la modification
             $this->emailVerifier->handleEmailConfirmation($request, $user);
         } catch (VerifyEmailExceptionInterface $exception) {
+            // En cas d'erreur (lien expiré, déjà utilisé, etc.), on affiche un message d'erreur
             $this->addFlash('verify_email_error', $translator->trans($exception->getReason(), [], 'VerifyEmailBundle'));
 
             return $this->redirectToRoute('app_register');
         }
 
-        // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $this->addFlash('success', 'Votre email a bien été verifiée, vous pouvez vous connecter.');
 
         return $this->redirectToRoute('app_login');
