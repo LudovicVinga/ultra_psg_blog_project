@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+// On importe les classes nécessaires pour créer le formulaire et gérer les types de champs et les contraintes
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -36,8 +37,10 @@ class RegistrationForm extends AbstractType
         ;
     }
 
+    // Méthode qui configure les options du formulaire
     public function configureOptions(OptionsResolver $resolver): void
     {
+        // On précise que ce formulaire manipule des objets de la classe User
         $resolver->setDefaults([
             'data_class' => User::class,
         ]);
