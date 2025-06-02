@@ -1,0 +1,9 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Tableau de bord{% endblock %}
+
+{% block description %}Accédez à votre espace administrateur sécurisé pour gérer efficacement vos contenus, utilisateurs et paramètres.{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Bienvenue {{app.user.firstName}} {{app.user.lastName}}</h1>
+{% endblock %}

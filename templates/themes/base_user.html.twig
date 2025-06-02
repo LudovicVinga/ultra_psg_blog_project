@@ -19,7 +19,7 @@
         <meta name="author" content="Luis Enrique">
         <meta name="publisher" content="Luis Enrique">
 
-        <title>{% block title %}{% endblock %} | UltraPSG</title>
+        <title>{% block title %}{% endblock %} | Espace utilisateur - UltraPSG</title>
 
         {# Google font #}
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,7 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body class="body-visitor bg-light">
+    <body class="body-user bg-light">
         {# Navbar #}
         <nav class="navbar navbar-expand-lg navbar-dark bg-light shadow py-3">
             <div class="container-fluid">
@@ -53,45 +53,26 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-4">
-                        <li class="nav-item">
-                            <a class="nav-link text-primary" aria-current="page" href="{{path('app_visitor_welcome')}}">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary" href="{{path('app_visitor_news')}}">News</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary" href="{{path('app_visitor_welcome')}}#ranking">Classement</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-primary" href="{{path('app_visitor_contact')}}">Contact</a>
-                        </li>
-                    </ul>
                     <ul class="navbar-nav ms-auto">
-                        {% if app.user %}
-                            {% if is_granted('ROLE_ADMIN') %}
-                            <li class="nav-item">
-                                <a class="nav-link text-primary" aria-current="page" href="{{path('app_admin_home')}}">Espace admin</a>
-                            </li>
-                            {% endif %}
-
-                            {% if is_granted('ROLE_USER') %}
-                            <li class="nav-item">
-                                <a class="nav-link text-primary" aria-current="page" href="{{path('app_user_home')}}">Mon espace</a>
-                            </li>
-                            {% endif %}
-                            
-                            <li class="nav-item">
-                                <a class="nav-link text-primary" aria-current="page" href="{{path('app_logout')}}">Déconnexion</a>
-                            </li>
-                        {% else %}
                         <li class="nav-item">
-                            <a class="nav-link text-primary" aria-current="page" href="{{path('app_login')}}">Connexion</a>
+                            <a class="nav-link text-primary" aria-current="page" href="{{path('app_user_home')}}">Mon espace</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary" href="{{path('app_register')}}">Inscription</a>
+                            <a class="nav-link text-primary" aria-current="page" href="">Paramètres</a>
+                        </li>
+
+                        {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" aria-current="page" href="{{path('app_admin_home')}}">Espace admin</a>
                         </li>
                         {% endif %}
+                        
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" aria-current="page" href="{{path('app_visitor_welcome')}}">Retour au site</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" aria-current="page" href="{{path('app_logout')}}">Déconnexion</a>
+                        </li>
                     </ul>
                 </div>
             </div>
