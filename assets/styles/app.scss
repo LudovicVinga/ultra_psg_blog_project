@@ -13,6 +13,10 @@
 // Layout
 @import "./layout/login-form";
 
+// Page
+@import "./pages/visitor/welcome/index";
+
 
 // Themes
 @import "./themes/base_visitor";
+@import "./themes/base_user";
