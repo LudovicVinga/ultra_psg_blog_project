@@ -2,7 +2,7 @@
 {% for label, messages in app.flashes %}
     {% for message in messages %}
         {# On crée une alerte Bootstrap avec la classe correspondant au label (success, danger, info, etc.) #}
-        <div class="alert alert-{{label}} alert-dismissible fade show text-center" role="alert">
+        <div class=" {{addMarginTop}} alert alert-{{label}} alert-dismissible fade show text-center" role="alert">
 
             {# On affiche le contenu du message flash #}
             {{message}}

@@ -1,0 +1,27 @@
+{% extends 'themes/base_visitor.html.twig' %}
+
+{% block title %}Email de réinitialisation de mot de passe envoyé !{% endblock %}
+
+{% block description %}Email de réinitialisation de mot de passe envoyé !{% endblock %}
+
+{% block keywords %}réinitialisation mot de passe, email envoyé, mot de passe oublié, confirmation, récupération mot de passe, nouveau mot de passe, sécurité, compte utilisateur, instructions par email, lien de réinitialisation, accès compte, support{% endblock %}
+
+{% block main %}
+
+    <div class="text-center mb-3">
+        <h1 class="text-danger display-5 fw-bold fst-italic">C'EST FAIT !</h1>
+        <h4 class="text-primary">Email envoyé...</h4>
+    </div>
+
+    <div class="container mt-5 text-center">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <p>
+                    Nous venons de vous envoyer un email pour réinitialiser le mot de passe de votre compte Ultra PSG.
+                    Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle') }}.
+                </p>
+                <p>Pensez a vérifier vos spams si vous ne trouvez pas l'email en question ou <a href="{{ path('app_forgot_password_request') }}">réessayez</a>.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

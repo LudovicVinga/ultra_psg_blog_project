@@ -1,0 +1,37 @@
+{% extends 'themes/base_visitor.html.twig' %}
+
+{% block title %}Nouveau mot de passe{% endblock %}
+
+{% block description %}Définissez un nouveau mot de passe pour sécuriser votre compte. Saisissez et confirmez votre nouveau mot de passe afin de retrouver l’accès à votre espace personnel en toute sécurité{% endblock %}
+
+{% block keywords %}nouveau mot de passe, définir mot de passe, changer mot de passe, création mot de passe, sécurité compte, saisie mot de passe, confirmation mot de passe, accès sécurisé, réinitialisation mot de passe, compte utilisateur{% endblock %}
+
+{% block main %}
+    <div class="text-center mb-3">
+        <h1 class="text-danger display-5 fw-bold fst-italic">NOUVEAU MOT DE PASSE</h1>
+        <h4 class="text-primary">Changez votre mot de passe rapidement et en toute sécurité</h4>
+    </div>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                {{ form_start(resetForm) }}
+                    <div class="mb-3">
+                        <label for="change_password_form_plainPassword_first">Nouveau mot de passe</label>
+                        <div class="text-danger">{{ form_errors(resetForm.plainPassword.first) }}</div>
+                        {{ form_widget(resetForm.plainPassword.first, {'attr': {'class':'form-control', 'autofocus':'autofocus'}}) }}
+                        <div><small>Le mot de passe doit contenir au moins 12 caractères.</small></div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="change_password_form_plainPassword_second">Confirmez le nouveau mot de passe</label>
+                        <div class="text-danger">{{ form_errors(resetForm.plainPassword.first) }}</div>
+                        {{ form_widget(resetForm.plainPassword.second, {'attr': {'class':'form-control'}}) }}
+                    </div>
+                    <div>
+                        <button formnovalidate class="btn btn-primary w-100 shadow">Confirmer</button>
+                    </div>
+                {{ form_end(resetForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
