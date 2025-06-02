@@ -28,7 +28,7 @@
                         <div class="alert alert-danger text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                     {% endif %}
 
-                    {% include 'components/alert.html.twig' %}
+                    {% include 'components/alert.html.twig' with {"addMarginTop": "mt-3"} %}
 
                     <div class="mb-3">
                         <label for="inputEmail">Email</label>
@@ -41,10 +41,15 @@
 
                     <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
 
-                    <div class="mb-3">
-                        <label>
-                            <input type="checkbox" name="_remember_me"> Se souvenir de moi 
-                        </label>
+                    <div class="row mb-3">
+                        <div class="col-md-6 my-2 text-md-start text-center">
+                            <label>
+                                <input type="checkbox" name="_remember_me"> Se souvenir de moi 
+                            </label>
+                        </div>
+                        <div class="col-md-6 my-2 text-md-end text-center">
+                            <a href="{{path('app_forgot_password_request')}}">Mot de passe oublié ?</a>
+                        </div>
                     </div>
 
                     <div>
