@@ -1,0 +1,26 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Créer une nouvelle catégorie{% endblock %}
+
+{% block description %}Créez facilement une nouvelle catégorie. Organisez vos contenus en quelques clics et gérez votre site plus efficacement dès maintenant{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Nouvelle catégorie</h1>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                {{ form_start(form) }}
+                    <div class="mb-3">
+                        <label for="admin_category_form_name">Nom</label>
+                        <div class="text-danger">{{ form_errors(form.name) }}</div>
+                        {{ form_widget(form.name, {'attr': {'class':'form-control my-3', 'autofocus':'autofocus'}}) }}
+                    </div>
+                    <div>
+                        <input formnovalidate type="submit" class="btn btn-dark w-100 rounded-pill shadow">
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
