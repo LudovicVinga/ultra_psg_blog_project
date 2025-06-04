@@ -1,0 +1,29 @@
+{% extends "themes/base_visitor.html.twig" %}
+
+{% block title %}L'effecitf{% endblock %}
+
+{% block description %}Découvrez l’effectif complet du Paris Saint-Germain {% endblock %}
+
+{% block keywords %}Joueurs, PSG, effectif, équipe, Paris saint-germain, composition, titulaire, remplaçant, gardien, défenseur, aillier, milieu, attaquant{% endblock %}
+
+{% block main %}
+
+    {% include 'components/welcomeTitle.twig' with {"h1" : "L'EFFECTIF"} %}
+
+    <div class="container my-5"> 
+        <div class="row">
+            {% for player in squad %}
+            <div class="col-lg-3 col-md-4">
+                <div class="card text-bg-primary mb-3">
+                    <img class="img-fluid" src="/images/static/squad/{{player.name}}.png" alt="{{player.name}}">
+                    <div class="card-header bg-danger text-center">{{player.name}}</div>
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{player.position}}</h5>
+                        <p class="card-text text-center">{{player.nationality}}</p>
+                    </div>           
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,9 +1,9 @@
 <div class="container-fluid hero-section d-flex justify-content-center align-items-center">
     <h1 class="fw-bold fst-italic text-center my-3">
-        {% if app.user %}
-          Bienvenue {{app.user.firstName}} {{app.user.lastName}} !
-        {% else %}
-            ULTRA PSG
-        {% endif %}
+    {% if h1 is defined %}
+        {{h1}}
+    {% elseif app.user.firstName is defined %}
+        Bienvenue {{app.user.firstName}} {{app.user.lastName}} !
+    {% endif %}
     </h1>
 </div>
