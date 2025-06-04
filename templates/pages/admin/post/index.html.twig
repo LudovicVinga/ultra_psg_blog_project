@@ -1,0 +1,15 @@
+{% extends "themes/base_admin.html.twig" %}
+
+{% block title %}Liste des articles{% endblock %}
+
+{% block description %}Gérez facilement tous vos articles depuis votre espace administrateur. Visualisez, modifiez ou ajoutez de nouveaux articles pour organiser efficacement votre contenu{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Liste des articles</h1>
+
+    {% include 'components/alert.html.twig' with {"addMarginTop": "mt-3"} %}
+
+    <div class="d-flex justify-content-end align-items-center my-4">
+        <a href="{{path('app_admin_post_create')}}" class="btn btn-dark rounded-pill shadow"><i class="fa-solid fa-plus"></i> Nouvel article</a>
+    </div>
+{% endblock %}
