@@ -81,7 +81,7 @@ final class CategoryController extends AbstractController
             $entityManager->remove($category);
             $entityManager->flush();
 
-            $this->addFlash('success', "La catégorie '{$categoryName}' a bien été supprimée.");
+            $this->addFlash('success', "La catégorie '{$categoryName}' ainsi que les articles associés ont bien été supprimés.");
         }
 
         return $this->redirectToRoute('app_admin_category_index');
