@@ -52,7 +52,11 @@ class ApiService
         return $this->apiKey;
     }
 
-
+    /**
+     * Cette fonction permet de garder uniquement les joueurs a afficher.
+     *
+     * @param array<int, string> $playersListToDelete
+     */
     public function excludePlayersOfSquad(array $playersListToDelete = []): mixed
     {
         $playersListToShow = [];
