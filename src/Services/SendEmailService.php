@@ -16,11 +16,10 @@ class SendEmailService
 
     /**
      * Cette methode du service permet d'envoyer l'email.
-     * 
-     * 
+     *
      * On spécifie que dans le tableau associatif, il y aura toujours clé (string) donne valeur (mixed)
+     *
      * @param array<string, mixed> $data
-     * @return void
      */
     public function send(array $data = []): void
     {

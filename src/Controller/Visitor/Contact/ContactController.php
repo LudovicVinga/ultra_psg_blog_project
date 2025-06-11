@@ -34,7 +34,7 @@ final class ContactController extends AbstractController
              */
             $user = $this->getUser();
 
-            if ($user != null) {
+            if (null != $user) {
                 // Si l'email renseigné par le contact correspond a l'email d'un utilisateur
                 if ($user->getEmail() == $contact->getEmail()) {
                     $contact->setUser($user);
