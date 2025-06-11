@@ -34,6 +34,9 @@
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#712cf9">
 
+        {# Font awesome #}
+        {% block fontAwesome %}{% endblock %}
+
         {# Bootstrap v5 CSS #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -43,6 +46,7 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
+        
     </head>
     <body class="body-visitor bg-light">
         {# Navbar #}
@@ -64,7 +68,7 @@
                             <a class="nav-link text-primary" href="{{path('app_visitor_teams')}}#ranking">L'effectif</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary" href="{{path('app_visitor_contact')}}">Contact</a>
+                            <a class="nav-link text-primary" href="{{path('app_visitor_contact_create')}}">Contact</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">

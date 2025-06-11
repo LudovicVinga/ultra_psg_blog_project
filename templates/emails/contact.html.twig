@@ -1,0 +1,22 @@
+<h2>Bonjour Luis !</h2>
+
+<p>Vous avez reçu un message d'un contact provenant de votre blog ULTRA PSG.</p>
+
+<p>Voici ses coordonnés : </p>
+
+<ul>
+    <li>
+        <strong>Identité</strong> : {{contact.firstName}} {{contact.lastName}}
+    </li>
+    <li>
+        <strong>Email</strong> : {{contact.email}}
+    </li>
+</ul>
+
+<p>Et voici le message : </p>
+
+<div>
+    {{contact.message|nl2br}}
+</div>
+
+<p>A bientôt !</p>
