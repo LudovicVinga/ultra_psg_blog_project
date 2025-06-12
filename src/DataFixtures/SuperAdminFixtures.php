@@ -20,6 +20,8 @@ class SuperAdminFixtures extends Fixture
 
         $manager->persist($superAdmin);
         $manager->flush();
+
+        $this->addReference('super-admin', $superAdmin);
     }
 
     /**
