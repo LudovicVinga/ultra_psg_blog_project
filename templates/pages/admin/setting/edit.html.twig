@@ -1,0 +1,31 @@
+{% extends 'themes/base_admin.html.twig' %}
+
+{% block title %}Modifier les paramètres du site{% endblock %}
+
+{% block description %}Modifiez facilement vos paramètres. Organisez vos contenus en quelques clics et gérez votre site plus efficacement dès maintenant{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Modifier les paramètres</h1>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                {{ form_start(form) }}
+                    <div class="mb-3">
+                        <label for="admin_setting_form_email">Email</label>
+                        <div class="text-danger">{{ form_errors(form.email) }}</div>
+                        {{ form_widget(form.email, {'attr': {'class':'form-control my-3', 'autofocus':'autofocus'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="admin_setting_form_phone">Numéro de téléphone</label>
+                        <div class="text-danger">{{ form_errors(form.phone) }}</div>
+                        {{ form_widget(form.phone, {'attr': {'class':'form-control my-3'}}) }}
+                    </div>
+                    <div>
+                        <input formnovalidate type="submit" value= "Modifier" class="btn btn-primary w-100 rounded-pill shadow">
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
