@@ -1,0 +1,38 @@
+{% extends 'themes/base_user.html.twig' %}
+
+{% block title %}Modifier le profil{% endblock %}
+
+{% block description %}Modifiez facilement votre profil. Gérez vos informations plus efficacement dès maintenant.{% endblock %}
+
+{% block keywords %}modifier profil utilisateur, mise à jour profil, édition informations personnelles, gestion compte, paramètres utilisateur, sécurité compte, mise à jour coordonnées, personnalisation profil, espace personnel, modification données utilisateur, profil en ligne, confidentialité, options profil{% endblock %}
+
+{% block main %}
+    <h1 class="text-center my-3 display-5">Modifier mon profil</h1>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                {{ form_start(form) }}
+                    <div class="mb-3">
+                        <label for="edit_profile_form_firstName">Prénom</label>
+                        <div class="text-danger">{{ form_errors(form.firstName) }}</div>
+                        {{ form_widget(form.firstName, {'attr': {'class':'form-control my-3', 'autofocus':'autofocus'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_profile_form_lastName">Nom</label>
+                        <div class="text-danger">{{ form_errors(form.lastName) }}</div>
+                        {{ form_widget(form.lastName, {'attr': {'class':'form-control my-3'}}) }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit_profile_form_email">Email</label>
+                        <div class="text-danger">{{ form_errors(form.email) }}</div>
+                        {{ form_widget(form.email, {'attr': {'class':'form-control my-3'}}) }}
+                    </div>
+                    <div>
+                        <input formnovalidate type="submit" class="btn btn-dark w-100 rounded-pill shadow">
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
