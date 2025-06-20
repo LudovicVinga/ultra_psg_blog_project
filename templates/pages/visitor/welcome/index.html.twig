@@ -8,8 +8,49 @@
 
 {% block main %}
 
+    {# hero-section #}
     <header>
         {% include 'components/welcomeTitle.twig' with {"h1" : "ULTRA PSG"} %}
     </header>
 
+    {# last-posts-section #}
+    <section class="text-center py-5 bg-white">
+        <h1 class="text-danger display-5 fw-bold fst-italic">LES DERNIERES NEWS</h1>
+        <h4 class="text-primary">Ne ratez rien de l'actualité du Paris saint-Germain !</h4>
+
+        <div class="container">
+            <div class="row">
+                {% for post in posts %}
+                    <div class="col-lg-4">
+                        <div class="card my-5 shadow">
+                            <div class="card-header bg-primary text-white text-uppercase">
+                                <h4><strong>{{post.title}}</strong></h4>
+                            </div>
+                            <div class="card-body">
+                                <p>
+                                    <span class="text-danger text-decoration-underline">Catégorie</span> : {{post.category.name}}
+                                </p>
+                                {% if post.tags is not empty %}
+                                    <p>
+                                        <span class="text-danger text-decoration-underline">Tags</span> : 
+                                        {% for tag in post.tags %}
+                                            <span class="m-2 badge text-bg-dark">{{tag.name}}</span>
+                                        {% endfor %}
+                                    </p>
+                                {% endif %}
+
+                                <p class="text-center">{{post.description}}</p>
+
+                                <p>Publié {{post.publishedAt|ago}}</p>
+                                
+                                <p>
+                                    <a href="" class="btn btn-primary">Consulter l'article</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
 {% endblock %}

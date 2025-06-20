@@ -46,6 +46,10 @@
     </head>
     <body class="body-user bg-light">
         {# Navbar #}
+
+        {# Récupère dans la variable pathClient les données de la requete et récuperer ce que l'utilisateur a envoyé depuis la barre d'URL #}
+        {% set pathClient = app.request.pathInfo %}
+
         <nav class="navbar navbar-expand-lg bg-light shadow py-3">
             <div class="container-fluid">
                 <a class="navbar-brand fw-bold fst-italic text-danger" href="{{path('app_visitor_welcome')}}"><img width="48" class="rounded-circle" src="/images/static/visitor/logo-ultra-psg.png" alt="Représentation du Paris saint-Germain avec les trois lettres P S G"></a>
@@ -53,25 +57,25 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ms-auto d-flex d-lg-flex align-items-lg-center">
                         <li class="nav-item">
-                            <a class="nav-link text-primary" aria-current="page" href="{{path('app_user_home')}}">Mon espace</a>
+                            <a class="nav-link {{ pathClient == path('app_user_home') ? 'active-danger' : '' }} " {{ pathClient == path('app_user_home') ? 'aria-current="page"' : '' }} href="{{path('app_user_home')}}">Mon espace</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary" aria-current="page" href="{{path('app_user_profile_index')}}">Mon profil</a>
+                            <a class="nav-link {{ pathClient == path('app_user_profile_index') ? 'active-danger' : '' }} " {{ pathClient == path('app_user_profile_index') ? 'aria-current="page"' : '' }} href="{{path('app_user_profile_index')}}">Mon profil</a>
                         </li>
 
                         {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
-                            <a class="nav-link text-primary" aria-current="page" href="{{path('app_admin_home')}}">Espace admin</a>
+                            <a class="nav-link {{ pathClient == path('app_admin_home') ? 'active-danger' : '' }} " aria-current="page" href="{{path('app_admin_home')}}">Espace admin</a>
                         </li>
                         {% endif %}
                         
                         <li class="nav-item">
-                            <a class="nav-link text-primary" aria-current="page" href="{{path('app_visitor_welcome')}}">Retour au site</a>
+                            <a class="nav-link" aria-current="page" href="{{path('app_visitor_welcome')}}">Retour au site</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary" aria-current="page" href="{{path('app_logout')}}">Déconnexion</a>
+                            <a class="my-2 mx-lg-2 btn btn-outline-danger shadow" aria-current="page" href="{{path('app_logout')}}">Déconnexion</a>
                         </li>
                     </ul>
                 </div>

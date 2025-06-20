@@ -7,11 +7,20 @@
 {% block keywords %}modifier profil utilisateur, mise à jour profil, édition informations personnelles, gestion compte, paramètres utilisateur, sécurité compte, mise à jour coordonnées, personnalisation profil, espace personnel, modification données utilisateur, profil en ligne, confidentialité, options profil{% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Modifier mon profil</h1>
+    <div class="text-center my-4">
+        <h1 class="text-danger display-5 fw-bold fst-italic">MODIFIER MON PROFIL</h1>
+        <h4 class="text-primary">Changez vos informations personnelles a tout moment, autant de fois que vous le souhaitez !</h4>
+    </div>
 
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-6 mx-auto">
+            {# image #}
+            <div class="col-lg-7 text-center d-flex flex-column justify-content-center align-items-center">
+                <img src="/images/static/user/tour-effeil.png" class="img-fluid border border-5 border-primary shadow" alt="Vu aérienne sur Paris avec la tour Effeil">
+            </div>
+
+            {# form #}
+            <div class="col-lg-5 shadow py-3">
                 {{ form_start(form) }}
                     <div class="mb-3">
                         <label for="edit_profile_form_firstName">Prénom</label>
@@ -33,6 +42,7 @@
                     </div>
                 {{ form_end(form) }}
             </div>
+
         </div>
     </div>
 {% endblock %}
