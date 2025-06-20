@@ -7,12 +7,51 @@
 {% block keywords %}profil utilisateur, informations personnelles, compte, gestion du profil, paramètres du compte, sécurité, modifier profil, coordonnées, données utilisateur, espace personnel, mise à jour profil, profil en ligne, confidentialité{% endblock %}
 
 {% block main %}
-    <h1 class="text-center my-3 display-5">Mon profil</h1>
+    
+    <div class="text-center my-3">
+        <h1 class="text-danger display-5 fw-bold fst-italic">MON PROFIL</h1>
+        <h4 class="text-primary">Consultez et modifiez vos informations personnelles</h4>
+    </div>
 
 
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-8 mx-auto shadow p-4 text-center">
+            {# image #}
+            <div class="col-lg-6 text-center d-flex flex-column justify-content-center align-items-center">
+                <img src="/images/static/user/parc.png" class="img-fluid border border-5 border-primary shadow" alt="Vu des tribunes du parc des princes">
+            </div>
+
+            {# Info utilisateurs #}
+            <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center py-3">
+
+                {% include 'components/alert.html.twig' with {"addMarginTop": "mt-3"} %}
+
+                <div>
+                    <p>
+                        <strong class="text-danger">Prénom</strong> : {{app.user.firstName}}
+                    </p>
+                    <p>
+                        <strong class="text-danger">Nom</strong> : {{app.user.lastName}}
+                    </p>
+                    <p>
+                        <strong class="text-danger">Email</strong> : {{app.user.email}}
+                    </p>
+                    <div>
+                        {# Dans ce cas précis, on sait que la personne qui cherche a modifier le profil est la personne connectée(ADMIN). Donc pas besoin de spécifier l'id en 2nd paramètre #}
+                        <a href="{{path('app_user_profile_edit_profile')}}" class="m-2 btn btn-sm btn-primary">Modifier mon profil</a>
+                        <a href="{{path('app_user_profile_edit_password')}}" class="m-2 btn btn-sm btn-dark">Modifier mon mot de passe</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+            {# <div class="col-md-8 mx-auto shadow p-4 text-center">
 
                 {% include 'components/alert.html.twig' with {"addMarginTop": "mt-3"} %}
 
@@ -27,12 +66,12 @@
                         <strong>Email</strong>: {{app.user.email}}
                     </p>
                     <div>
-                        {# Dans ce cas précis, on sait que la personne qui cherche a modifier le profil est la personne connectée(ADMIN). Donc pas besoin de spécifier l'id en 2nd paramètre #}
+                        Dans ce cas précis, on sait que la personne qui cherche a modifier le profil est la personne connectée(ADMIN). Donc pas besoin de spécifier l'id en 2nd paramètre
                         <a href="{{path('app_user_profile_edit_profile')}}" class="m-2 btn btn-sm btn-primary">Modifier mon profil</a>
                         <a href="{{path('app_user_profile_edit_password')}}" class="m-2 btn btn-sm btn-dark">Modifier mon mot de passe</a>
                     </div>
                 </div>
-            </div>
+            </div> #}
         </div>
     </div>
 {% endblock %}
