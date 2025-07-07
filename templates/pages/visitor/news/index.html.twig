@@ -6,8 +6,98 @@
 
 {% block keywords %}"PSG, Paris Saint-Germain, actualité PSG, news PSG, Ligue 1, Champions League, mercato PSG, transferts PSG, résultats PSG, calendrier PSG, joueurs PSG, Parc des Princes, supporters PSG, interviews PSG, club de football Paris, PSG fans"{% endblock %}
 
+{% block knp_paginator %}
+{{ knp_pagination_rel_links(posts) }} 
+{% endblock %}
+
 {% block main %}
     <header>
         {% include 'components/welcomeTitle.twig' with {"h1" : "LES NEWS"} %}
     </header>
+
+    <div class="container my-5">
+        <div class="row text-center">
+            <div class="col-md-6">
+                <div class="dropdown my-2">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Catégories
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% if categories is not empty %}
+                            {% for category in categories %}
+                                <li><a class="dropdown-item" href="{{path('app_visitor_news_filter_by_category', {'id':category.id, 'slug':category.slug})}}">{{ category.name }} ({{ category.posts|length }})</a></li>  
+                            {% endfor %}
+                        {% else %}
+                            <li><a class="dropdown-item" href="">Aucune catégorie disponible</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="dropdown my-2">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Tags
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% if tags is not empty%}
+                            {% for tag in tags %}
+                                <li><a class="dropdown-item" href="{{path('app_visitor_news_filter_by_tag', {'id':tag.id, 'slug':tag.slug})}}">{{ tag.name }} ({{ tag.posts|length }})</a></li>  
+                            {% endfor %}
+                        {% else %}
+                            <li><a class="dropdown-item" href="">Aucun tag disponible</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-md-10 col-lg-10 mx-auto">
+                {% for post in posts %}
+                    <article class="card mb-5 shadow">
+                        <div class="row g-0">
+                            <div class="col-md-4 d-flex justify-content-center align-items-center">
+                                {% if post.image %}
+                                    <img src="{{vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb') }}" class="img-fluid rounded-start w-100 h-100" alt="{{post.title}}">
+                                {% else %}
+                                    <img src="/images/static/visitor/news/default_post_img.png" class="img-fluid rounded-start" alt="{{post.title}}">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h2 class="card-title">{{post.title}}</h2>
+                                    <p class="card-text">{{post.description}}</p>
+                                    <p>
+                                        <span class="text-danger">Catégorie</span> : {{post.category.name}}
+                                    </p>
+
+                                    {% if post.tags is not empty %}
+                                        <p>
+                                            <span class="text-danger">Tags</span> : 
+                                            {% for tag in post.tags %}
+                                                <span class=" mx-1 badge rounded-pill text-bg-dark">{{tag.name}}</span>
+                                            {% endfor %}
+                                        </p>
+                                    {% endif %}
+
+                                    <p class="card-text">
+                                        <small class="text-body-secondary">Publié {{post.publishedAt|ago}}</small>
+                                    </p>
+
+                                    <a href="" class="btn btn-lg btn-primary">Consulter l'article</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <hr class="my-5 text-primary">
+                {% endfor %}
+
+                {# display navigation #}
+                <div class="navigation d-flex justify-content-center align-items-center">
+                    {{ knp_pagination_render(posts) }}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

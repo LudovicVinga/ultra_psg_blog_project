@@ -5,6 +5,7 @@ namespace App\Services;
 class ApiService
 {
     private string $uri = 'https://api.football-data.org/v4/competitions/FL1/teams';
+    // private string $uri = 'https://api.football-data.org/v4/teams/524';
 
     private string $apiKey;
 
