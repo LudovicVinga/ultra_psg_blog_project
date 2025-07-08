@@ -3,6 +3,7 @@
 namespace App\Controller\Visitor\News;
 
 use App\Entity\Category;
+use App\Entity\Post;
 use App\Entity\Tag;
 use App\Repository\CategoryRepository;
 use App\Repository\PostRepository;
@@ -86,6 +87,14 @@ final class NewsController extends AbstractController
             'posts' => $posts,
             'categories' => $categories,
             'tags' => $tags,
+        ]);
+    }
+
+    #[Route('/news/article/{id<\d+>}/{slug}', name: 'app_visitor_news_post_show', methods: ['GET'])]
+    public function showPost(Post $post): Response
+    {
+        return $this->render('pages/visitor/news/show.html.twig', [
+            'post' => $post,
         ]);
     }
 }

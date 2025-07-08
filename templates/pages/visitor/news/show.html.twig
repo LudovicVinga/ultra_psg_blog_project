@@ -1,0 +1,35 @@
+{% extends 'themes/base_visitor.html.twig' %}
+
+{% block title %}{{post.title}}{% endblock %}
+
+{% block description %}{{post.description}}{% endblock %}
+
+{% block keywords %}blog, article de blog, actualité, publication, contenu original, rédaction web, catégorie, tag, résumé article, lecture article, commentaire, date de publication, tendances{% endblock %}
+
+{% block main %}
+    <div class="container mt-5">
+        <div class="container-img text-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{path('app_visitor_news')}}">Liste des articles</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">{{post.title|u.truncate('60', '...')}}</li>
+                </ol>
+            </nav>
+
+            <div>
+                {% if post.image %}
+                    <img src="{{vich_uploader_asset(post, 'imageFile') }}" class="img-fluid rounded-start w-100 h-100" alt="{{post.title}}">
+                {% endif %}
+            </div>
+
+            <div class="text-center my-3">
+                <h1>{{post.title}}</h1>
+                <small>Publié {{post.publishedAt|ago}} par <strong>Luis Enrique</strong></small>
+            </div>
+        </div>
+
+        <div class="container-post my-5">
+            {{post.content|nl2br}}
+        </div>
+    </div>
+{% endblock %}

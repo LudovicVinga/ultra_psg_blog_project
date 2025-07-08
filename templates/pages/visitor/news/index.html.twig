@@ -65,8 +65,8 @@
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body">
-                                    <h2 class="card-title">{{post.title}}</h2>
-                                    <p class="card-text">{{post.description}}</p>
+                                    <h2 class="card-title">{{post.title|u.truncate('80', '...')}}</h2>
+                                    <p class="card-text">{{post.description|u.truncate('60', '...')}}</p>
                                     <p>
                                         <span class="text-danger">Catégorie</span> : {{post.category.name}}
                                     </p>
@@ -84,7 +84,7 @@
                                         <small class="text-body-secondary">Publié {{post.publishedAt|ago}}</small>
                                     </p>
 
-                                    <a href="" class="btn btn-lg btn-primary">Consulter l'article</a>
+                                    <a href="{{path('app_visitor_news_post_show', {'id':post.id, 'slug':post.slug})}}" class="btn btn-lg btn-primary">Consulter l'article</a>
 
                                 </div>
                             </div>
