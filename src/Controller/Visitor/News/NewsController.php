@@ -3,11 +3,15 @@
 namespace App\Controller\Visitor\News;
 
 use App\Entity\Category;
+use App\Entity\Like;
 use App\Entity\Post;
 use App\Entity\Tag;
+use App\Entity\User;
 use App\Repository\CategoryRepository;
+use App\Repository\LikeRepository;
 use App\Repository\PostRepository;
 use App\Repository\TagRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -95,6 +99,58 @@ final class NewsController extends AbstractController
     {
         return $this->render('pages/visitor/news/show.html.twig', [
             'post' => $post,
+        ]);
+    }
+
+    #[Route('/news/article/{id<\d+>}/{slug}/like', name: 'app_visitor_news_post_like', methods: ['GET'])]
+    public function likePost(Post $post, LikeRepository $likeRepository, EntityManagerInterface $entityManager): Response
+    {
+
+        /**
+         * Vérifier si il y a un utilisateur connecté
+         * @var User
+         */
+        $user = $this->getUser();
+        // Si ce n'est pas le cas
+        if (null == $user) {
+            // Retourner le message d'erreur correspondant
+            return $this->json(['message' => 'Vous devez être connecté pour pouvoir liker!'], Response::HTTP_FORBIDDEN);
+        }
+        // Sinon,
+
+        // Vérifier si l'article a deja ete liké ou non
+        // Si l'article a deja été  liké
+        if ($post->isLikedBy($user)) {
+            // Récuperer le like,
+            $like = $likeRepository->findOneBy(['post' => $post, 'user' => $user]);
+
+            // Supprimer ce like de la table des likes
+            $entityManager->remove($like);
+            $entityManager->flush();
+
+            // Retourner le message correspondant ainsi que le nombre total (a jour) de like pour cet article
+            return $this->json([
+                'message' => 'Le like a été retiré',
+                'totalLikesUpdated' => $likeRepository->count(['post' => $post]),
+            ]);
+        }
+
+        // Dans le cas contrire,
+        // Creer le nouveau like
+        $like = new Like();
+        $like->setPost($post);
+        $like->setUser($user);
+        $like->setCreatedAt(new \DateTimeImmutable());
+        $like->setUpdatedAt(new \DateTimeImmutable());
+
+        // Sauvegarder le like en base de données
+        $entityManager->persist($like);
+        $entityManager->flush();
+
+        // Retourner le message correspondant ainsi que le nombre total (a jour) de like pour cet article
+        return $this->json([
+            'message' => 'Le like a été ajouté',
+            'totalLikesUpdated' => $likeRepository->count(['post' => $post]),
         ]);
     }
 }
