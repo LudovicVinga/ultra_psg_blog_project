@@ -23,7 +23,6 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
 
-
     #[Assert\NotBlank(message: 'Le commentaire est obligatoire.')]
     #[Assert\Length(
         max: 1000,

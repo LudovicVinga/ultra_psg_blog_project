@@ -80,7 +80,7 @@
                                         <small>{{comment.activatedAt ? comment.activatedAt|ago : ''}}</small>
                                     </p>
                                     <hr>
-                                    <p>{{comment.content}}</p>
+                                    <p>{{comment.content|nl2br}}</p>
                                 </div>
                             </div>
                         {% endif %}

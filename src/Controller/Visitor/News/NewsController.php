@@ -2,24 +2,23 @@
 
 namespace App\Controller\Visitor\News;
 
-use App\Entity\Tag;
+use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\Like;
 use App\Entity\Post;
+use App\Entity\Tag;
 use App\Entity\User;
-use App\Entity\Comment;
-use App\Entity\Category;
 use App\Form\CommentFormType;
-use App\Repository\TagRepository;
+use App\Repository\CategoryRepository;
 use App\Repository\LikeRepository;
 use App\Repository\PostRepository;
-use App\Repository\CategoryRepository;
-use DateTimeImmutable;
+use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 final class NewsController extends AbstractController
 {
@@ -105,8 +104,7 @@ final class NewsController extends AbstractController
         $form = $this->createForm(CommentFormType::class, $comment);
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $comment->setPost($post);
 
             /**
@@ -115,30 +113,30 @@ final class NewsController extends AbstractController
             $user = $this->getUser();
 
             $comment->setUser($user);
-            $comment->setCreatedAt(new DateTimeImmutable());
-            $comment->setActivatedAt(new DateTimeImmutable());
+            $comment->setCreatedAt(new \DateTimeImmutable());
+            $comment->setActivatedAt(new \DateTimeImmutable());
 
             $entityManager->persist($comment);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_visitor_news_post_show', [
-                "id" => $post->getId(),
-                "slug" => $post->getSlug(),
+                'id' => $post->getId(),
+                'slug' => $post->getSlug(),
             ]);
         }
 
         return $this->render('pages/visitor/news/show.html.twig', [
             'post' => $post,
-            "form" => $form->createView(),
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/news/article/{id<\d+>}/{slug}/like', name: 'app_visitor_news_post_like', methods: ['GET'])]
     public function likePost(Post $post, LikeRepository $likeRepository, EntityManagerInterface $entityManager): Response
     {
-
         /**
-         * Vérifier si il y a un utilisateur connecté
+         * Vérifier si il y a un utilisateur connecté.
+         *
          * @var User
          */
         $user = $this->getUser();
