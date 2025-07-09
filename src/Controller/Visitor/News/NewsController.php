@@ -3,10 +3,12 @@
 namespace App\Controller\Visitor\News;
 
 use App\Entity\Category;
+use App\Entity\Comment;
 use App\Entity\Like;
 use App\Entity\Post;
 use App\Entity\Tag;
 use App\Entity\User;
+use App\Form\CommentFormType;
 use App\Repository\CategoryRepository;
 use App\Repository\LikeRepository;
 use App\Repository\PostRepository;
@@ -94,20 +96,47 @@ final class NewsController extends AbstractController
         ]);
     }
 
-    #[Route('/news/article/{id<\d+>}/{slug}', name: 'app_visitor_news_post_show', methods: ['GET'])]
-    public function showPost(Post $post): Response
+    #[Route('/news/article/{id<\d+>}/{slug}', name: 'app_visitor_news_post_show', methods: ['GET', 'POST'])]
+    public function showPost(Post $post, Request $request, EntityManagerInterface $entityManager): Response
     {
+        $comment = new Comment();
+
+        $form = $this->createForm(CommentFormType::class, $comment);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $comment->setPost($post);
+
+            /**
+             * @var User
+             */
+            $user = $this->getUser();
+
+            $comment->setUser($user);
+            $comment->setCreatedAt(new \DateTimeImmutable());
+            $comment->setActivatedAt(new \DateTimeImmutable());
+
+            $entityManager->persist($comment);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_visitor_news_post_show', [
+                'id' => $post->getId(),
+                'slug' => $post->getSlug(),
+            ]);
+        }
+
         return $this->render('pages/visitor/news/show.html.twig', [
             'post' => $post,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/news/article/{id<\d+>}/{slug}/like', name: 'app_visitor_news_post_like', methods: ['GET'])]
     public function likePost(Post $post, LikeRepository $likeRepository, EntityManagerInterface $entityManager): Response
     {
-
         /**
-         * Vérifier si il y a un utilisateur connecté
+         * Vérifier si il y a un utilisateur connecté.
+         *
          * @var User
          */
         $user = $this->getUser();
