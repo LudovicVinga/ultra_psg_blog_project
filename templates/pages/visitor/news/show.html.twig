@@ -46,6 +46,51 @@
                 <span id="total-likes-container">{{post.likes|length}}</span>
                 <span>J'aime</span>
             </div>
+
+            
+            {% if app.user %}
+                {# Form #}
+                {{ form_start(form, {'action': path('app_visitor_news_post_show', {'id':post.id, 'slug':post.slug})~'#comments-container'}) }}
+                <div class="mb-3">
+                    <label for="comment_form_content">Laissez un commentaire</label>
+                    {{ form_widget(form.content, {'attr': {'class':'form-control'}}) }}
+                </div>
+                <div>
+                    <input type="submit" class="btn btn-primary shadow">
+                </div>
+                {{ form_end(form) }}
+            {% else %}
+            <div class="text-center my-5">
+                <p><strong>Connectez-vous pour donner votre avis.</strong></p>
+                <a href="{{path('app_login')}}" class="btn btn-primary w-75">Se connecter</a>
+                <p class="mt-1">ou</p>
+                <a href="{{path('app_register')}}" class="btn btn-primary w-75">S'inscrire</a>
+            {% endif %}
+
+            {% if post.comments|length > 0 %}
+                <div id="comments-container" class="my-5">
+                    {% for comment in post.comments|reverse %}
+                        {% if comment.isActivated %}
+                            <div>
+                                <div class="shadow p-4">
+                                    <p>
+                                        <strong>{{comment.user.firstName}} {{comment.user.lastName}}</strong>
+                                    </p>
+                                    <p>
+                                        <small>{{comment.activatedAt ? comment.activatedAt|ago : ''}}</small>
+                                    </p>
+                                    <hr>
+                                    <p>{{comment.content}}</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                        <hr class="my-3 text-danger">
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            </div>
+            
         </div>
 
     </div>
