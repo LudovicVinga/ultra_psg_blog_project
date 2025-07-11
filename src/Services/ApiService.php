@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+// use Symfony\Contracts\HttpClient\HttpClientInterface;
+
 class ApiService
 {
     private string $uri = 'https://api.football-data.org/v4/competitions/FL1/teams';

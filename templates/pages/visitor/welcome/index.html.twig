@@ -24,7 +24,7 @@
                     <div class="col-lg-4">
                         <div class="card my-5 shadow">
                             <div class="card-header bg-primary text-white text-uppercase">
-                                <h4><strong>{{post.title}}</strong></h4>
+                                <h4><strong>{{post.title|u.truncate('30', '...')}}</strong></h4>
                             </div>
                             <div class="card-body">
                                 {% if post.image %}
@@ -49,7 +49,7 @@
                                 <p>Publié {{post.publishedAt|ago}}</p>
                                 
                                 <p>
-                                    <a href="" class="btn btn-primary">Consulter l'article</a>
+                                    <a href="{{path('app_visitor_news_post_show', {'id':post.id, 'slug':post.slug})}}" class="btn btn-primary">Consulter l'article</a>
                                 </p>
                             </div>
                         </div>
