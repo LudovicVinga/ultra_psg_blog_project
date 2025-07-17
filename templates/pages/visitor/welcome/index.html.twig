@@ -14,19 +14,21 @@
     </header>
 
     {# last-posts-section #}
-    <section class="text-center py-5 bg-white">
-        <h1 class="text-danger display-5 fw-bold fst-italic">LES DERNIERES NEWS</h1>
-        <h4 class="text-primary">Ne ratez rien de l'actualité du Paris saint-Germain !</h4>
+    <section class="text-center py-5">
+        <div>
+            <h1 class="text-danger display-5 fw-bold fst-italic">LES DERNIERES NEWS</h1>
+            <h4 class="text-primary">Ne ratez rien de l'actualité du Paris saint-Germain !</h4>
+        </div>
 
         <div class="container">
             <div class="row">
                 {% for post in posts %}
-                    <div class="col-lg-4">
-                        <div class="card my-5 shadow">
+                    <div class="col-lg-4 my-3">
+                        <div class="card my-5 shadow h-100">
                             <div class="card-header bg-primary text-white text-uppercase">
                                 <h4><strong>{{post.title|u.truncate('30', '...')}}</strong></h4>
                             </div>
-                            <div class="card-body">
+                            <div class="card-body d-flex flex-column justify-content-center align-items-center">
                                 {% if post.image %}
                                     <img src="{{vich_uploader_asset(post, 'imageFile') | imagine_filter('visitor_post_thumb') }}" class="img-fluid rounded-start" alt="{{post.title}}">
                                 {% else %}
@@ -44,7 +46,7 @@
                                     </p>
                                 {% endif %}
 
-                                <p class="text-center">{{post.description}}</p>
+                                <p class="text-center">{{post.description|u.truncate('60', '...')}}</p>
 
                                 <p>Publié {{post.publishedAt|ago}}</p>
                                 
@@ -56,6 +58,13 @@
                     </div>
                 {% endfor %}
             </div>
+        </div>
+    </section>
+
+    <section class="my-5 bg-white">
+        <div class="text-center">
+            <h1 class="text-danger display-5 fw-bold fst-italic">ULTRA PSG c'est quoi ?</h1>
+            <h4 class="text-primary">Une initiative pour les passionnés</h4>
         </div>
     </section>
 {% endblock %}

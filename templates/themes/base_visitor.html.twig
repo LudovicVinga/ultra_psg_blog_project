@@ -60,56 +60,86 @@
         {# Récupère dans la variable pathClient les données de la requete et récuperer ce que l'utilisateur a envoyé depuis la barre d'URL #}
         {% set pathClient = app.request.pathInfo %}
 
-        <nav class="navbar navbar-expand-lg bg-light shadow py-3">
+        <nav class="navbar navbar-expand-lg bg-light shadow-lg px-3 py-3">
             <div class="container-fluid">
-                <a class="navbar-brand fw-bold fst-italic text-danger" href="{{path('app_visitor_welcome')}}"><img width="48" class="rounded-circle" src="/images/static/visitor/logo-ultra-psg.png" alt="Représentation du Paris saint-Germain avec les trois lettres P S G"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <a class="navbar-brand fw-bold fst-italic text-danger d-flex align-items-center gap-2" href="{{ path('app_visitor_welcome') }}">
+                <img width="48" class="rounded-circle shadow-sm" src="/images/static/visitor/logo-ultra-psg.png" alt="Représentation du Paris saint-Germain avec les trois lettres P S G">
+                <span class="d-none d-md-inline fw-bold">Ultra PSG</span>
+                </a>
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-4">
-                        <li class="nav-item">
-                            <a class="nav-link {{ pathClient == path('app_visitor_welcome') ? 'active-danger' : '' }}" {{ pathClient == path('app_visitor_welcome') ? 'aria-current="page"' : '' }} href="{{path('app_visitor_welcome')}}">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ pathClient == path('app_visitor_news') ? 'active-danger' : '' }} " {{ pathClient == path('app_visitor_news') ? 'aria-current="page"' : '' }}  href="{{path('app_visitor_news')}}">News</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ pathClient == path('app_visitor_teams') ? 'active-danger' : '' }} " {{ pathClient == path('app_visitor_teams') ? 'aria-current="page"' : '' }}  href="{{path('app_visitor_teams')}}#ranking">L'effectif</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ pathClient == path('app_visitor_contact_create') ? 'active-danger' : '' }} " {{ pathClient == path('app_visitor_contact_create') ? 'aria-current="page"' : '' }}  href="{{path('app_visitor_contact_create')}}">Contact</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav ms-auto d-flex d-lg-flex align-items-lg-center">
-                        {% if app.user %}
-                            {% if is_granted('ROLE_ADMIN') %}
-                            <li class="nav-item">
-                                <a class="nav-link text-primary" aria-current="page" href="{{path('app_admin_home')}}">Espace admin</a>
-                            </li>
-                            {% endif %}
-
-                            {% if is_granted('ROLE_USER') %}
-                            <li class="nav-item">
-                                <a class="nav-link text-primary" aria-current="page" href="{{path('app_user_home')}}">Mon espace</a>
-                            </li>
-                            {% endif %}
-                            
-                            <li class="nav-item">
-                                <a class="my-2 mx-lg-2 btn btn-outline-danger shadow" aria-current="page" href="{{path('app_logout')}}">Déconnexion</a>
-                            </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="my-1 mx-lg-2 btn btn-outline-primary shadow" aria-current="page" href="{{path('app_login')}}">Connexion</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="my-1 mx-lg-2 btn btn-outline-primary shadow" href="{{path('app_register')}}">Inscription</a>
-                        </li>
-                        {% endif %}
-                    </ul>
+                <div class="collapse navbar-collapse rounded-4" id="navbarNav">
+                <!-- NAVIGATION PRINCIPALE -->
+                <ul class="navbar-nav ms-4 gap-lg-2 gap-1">
+                    <li class="nav-item">
+                    <a class="nav-link px-3 fw-semibold rounded-pill {{ pathClient == path('app_visitor_welcome') ? 'active text-danger bg-primary bg-opacity-10' : 'text-secondary' }}"
+                        {{ pathClient == path('app_visitor_welcome') ? 'aria-current="page"' : '' }}
+                        href="{{ path('app_visitor_welcome') }}">
+                        Accueil
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link px-3 fw-semibold rounded-pill {{ pathClient == path('app_visitor_news') ? 'active text-danger bg-primary bg-opacity-10' : 'text-secondary' }}"
+                        {{ pathClient == path('app_visitor_news') ? 'aria-current="page"' : '' }}
+                        href="{{ path('app_visitor_news') }}">
+                        News
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link px-3 fw-semibold rounded-pill {{ pathClient == path('app_visitor_teams') ? 'active text-danger bg-primary bg-opacity-10' : 'text-secondary' }}"
+                        {{ pathClient == path('app_visitor_teams') ? 'aria-current="page"' : '' }}
+                        href="{{ path('app_visitor_teams') }}#ranking">
+                        L'effectif
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link px-3 fw-semibold rounded-pill {{ pathClient == path('app_visitor_contact_create') ? 'active text-danger bg-primary bg-opacity-10' : 'text-secondary' }}"
+                        {{ pathClient == path('app_visitor_contact_create') ? 'aria-current="page"' : '' }}
+                        href="{{ path('app_visitor_contact_create') }}">
+                        Contact
+                    </a>
+                    </li>
+                </ul>
+                <!-- ACTIONS/BOUTONS À DROITE -->
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
+                    {% if app.user %}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link text-primary fw-semibold" aria-current="page" href="{{ path('app_admin_home') }}">
+                        Espace admin
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% if is_granted('ROLE_USER') %}
+                    <li class="nav-item">
+                        <a class="nav-link text-primary fw-semibold" aria-current="page" href="{{ path('app_user_home') }}">
+                        Mon espace
+                        </a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="btn btn-outline-danger rounded-pill px-4 fw-semibold shadow-sm" aria-current="page" href="{{ path('app_logout') }}">
+                        Déconnexion
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="btn btn-outline-primary rounded-pill px-4 fw-semibold shadow-sm" aria-current="page" href="{{ path('app_login') }}">
+                        Connexion
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-primary rounded-pill px-4 fw-semibold shadow-sm" href="{{ path('app_register') }}">
+                        Inscription
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
                 </div>
             </div>
         </nav>
+
 
         {# Main #}
         <main>

@@ -50,37 +50,59 @@
         {# Récupère dans la variable pathClient les données de la requete et récuperer ce que l'utilisateur a envoyé depuis la barre d'URL #}
         {% set pathClient = app.request.pathInfo %}
 
-        <nav class="navbar navbar-expand-lg bg-light shadow py-3">
+        <nav class="navbar navbar-expand-lg bg-white shadow-lg rounded-4 px-3 py-3">
             <div class="container-fluid">
-                <a class="navbar-brand fw-bold fst-italic text-danger" href="{{path('app_visitor_welcome')}}"><img width="48" class="rounded-circle" src="/images/static/visitor/logo-ultra-psg.png" alt="Représentation du Paris saint-Germain avec les trois lettres P S G"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <a class="navbar-brand fw-bold fst-italic text-danger d-flex align-items-center gap-2" href="{{ path('app_visitor_welcome') }}">
+                <img width="48" class="rounded-circle shadow-sm" src="/images/static/visitor/logo-ultra-psg.png" alt="Représentation du Paris saint-Germain avec les trois lettres P S G">
+                <span class="d-none d-md-inline fw-bold">Ultra PSG</span>
+                </a>
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto d-flex d-lg-flex align-items-lg-center">
-                        <li class="nav-item">
-                            <a class="nav-link {{ pathClient == path('app_user_home') ? 'active-danger' : '' }} " {{ pathClient == path('app_user_home') ? 'aria-current="page"' : '' }} href="{{path('app_user_home')}}">Mon espace</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {{ pathClient == path('app_user_profile_index') ? 'active-danger' : '' }} " {{ pathClient == path('app_user_profile_index') ? 'aria-current="page"' : '' }} href="{{path('app_user_profile_index')}}">Mon profil</a>
-                        </li>
-
-                        {% if is_granted('ROLE_ADMIN') %}
-                        <li class="nav-item">
-                            <a class="nav-link {{ pathClient == path('app_admin_home') ? 'active-danger' : '' }} " aria-current="page" href="{{path('app_admin_home')}}">Espace admin</a>
-                        </li>
-                        {% endif %}
-                        
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{path('app_visitor_welcome')}}">Retour au site</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="my-2 mx-lg-2 btn btn-outline-danger shadow" aria-current="page" href="{{path('app_logout')}}">Déconnexion</a>
-                        </li>
-                    </ul>
+                <div class="collapse navbar-collapse rounded-4" id="navbarNav">
+                <ul class="navbar-nav ms-auto d-flex align-items-lg-center gap-2">
+                    <li class="nav-item">
+                    <a class="nav-link px-3 fw-semibold rounded-pill {{ pathClient == path('app_user_home') ? 'active text-danger bg-primary bg-opacity-10' : 'text-secondary' }}"
+                        {{ pathClient == path('app_user_home') ? 'aria-current="page"' : '' }}
+                        href="{{ path('app_user_home') }}">
+                        Mon espace
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link px-3 fw-semibold rounded-pill {{ pathClient == path('app_user_profile_index') ? 'active text-danger bg-primary bg-opacity-10' : 'text-secondary' }}"
+                        {{ pathClient == path('app_user_profile_index') ? 'aria-current="page"' : '' }}
+                        href="{{ path('app_user_profile_index') }}">
+                        Mon profil
+                    </a>
+                    </li>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                    <a class="nav-link px-3 fw-semibold rounded-pill {{ pathClient == path('app_admin_home') ? 'active text-danger bg-primary bg-opacity-10' : 'text-secondary' }}"
+                        aria-current="page"
+                        href="{{ path('app_admin_home') }}">
+                        Espace admin
+                    </a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item">
+                    <a class="nav-link px-3 fw-semibold rounded-pill text-secondary"
+                        aria-current="page"
+                        href="{{ path('app_visitor_welcome') }}">
+                        Retour au site
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="my-2 mx-lg-2 btn btn-outline-danger rounded-pill px-4 fw-semibold shadow-sm"
+                        aria-current="page"
+                        href="{{ path('app_logout') }}">
+                        Déconnexion
+                    </a>
+                    </li>
+                </ul>
                 </div>
             </div>
         </nav>
+
           
         {# Main #}
         <main>

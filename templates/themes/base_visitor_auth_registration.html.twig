@@ -45,31 +45,45 @@
         
     </head>
     <body class="body-visitor bg-light">
+    
         {# Navbar #}
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow mb-5 py-3">
+        <nav class="navbar navbar-expand-lg bg-white shadow-lg rounded-4 px-3 py-3 mb-4">
             <div class="container-fluid">
-                <a class="navbar-brand fw-bold fst-italic text-danger" href="{{path('app_visitor_welcome')}}"><img width="48" class="rounded-circle" src="/images/static/visitor/logo-ultra-psg.png" alt="Représentation du Paris saint-Germain avec les trois lettres P S G"></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                <a class="navbar-brand fw-bold fst-italic text-danger d-flex align-items-center gap-2" href="{{ path('app_visitor_welcome') }}">
+                <img width="48" class="rounded-circle shadow-sm" src="/images/static/visitor/logo-ultra-psg.png" alt="Représentation du Paris saint-Germain avec les trois lettres P S G">
+                <span class="d-none d-md-inline fw-bold">Ultra PSG</span>
+                </a>
+                <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-4">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{path('app_visitor_welcome')}}">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{path('app_visitor_news')}}">News</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{path('app_visitor_teams')}}#ranking">L'effectif</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{path('app_visitor_contact_create')}}">Contact</a>
-                        </li>
-                    </ul>
+                <div class="collapse navbar-collapse rounded-4" id="navbarNav">
+                <ul class="navbar-nav ms-4 gap-lg-2 gap-1">
+                    <li class="nav-item">
+                    <a class="nav-link px-3 fw-semibold rounded-pill text-secondary" aria-current="page" href="{{ path('app_visitor_welcome') }}">
+                        Accueil
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link px-3 fw-semibold rounded-pill text-secondary" href="{{ path('app_visitor_news') }}">
+                        News
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link px-3 fw-semibold rounded-pill text-secondary" href="{{ path('app_visitor_teams') }}#ranking">
+                        L'effectif
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link px-3 fw-semibold rounded-pill text-secondary" href="{{ path('app_visitor_contact_create') }}">
+                        Contact
+                    </a>
+                    </li>
+                </ul>
+                <!-- Slots vides à droite pour garder la structure si besoin -->
                 </div>
             </div>
         </nav>
+
 
         {# Main #}
         <main>
