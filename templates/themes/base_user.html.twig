@@ -110,18 +110,38 @@
         </main>
 
         {# Footer #}
-        <footer class="container mt-3">
-                <div class="d-flex justify-content-evenly align-items-center my-3">
-                        <a href="#">
-                            <img src="/images/static/visitor/snapchat.png" alt="">
-                        </a>
-                        <a href="#">
-                            <img src="/images/static/visitor/instagram.png" alt="">
-                        </a>
-                        <a href="#">
-                            <img src="/images/static/visitor/twitter.png" alt="">
-                        </a>
+        <footer class="bg-white shadow-lg rounded-top-4 py-4 mt-5">
+            <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
+                <!-- Bloc gauche -->
+                <div class="text-center text-md-start flex-grow-1">
+                <p class="mb-0 fs-6 text-secondary">
+                    &copy; {{ "now"|date("Y") }} Ultra PSG &bull; Blog de fans du Paris Saint-Germain
+                </p>
                 </div>
+                
+                <!-- Logo au centre -->
+                <div class="mx-md-4">
+                <img
+                    src="/images/static/visitor/logo-ultra-psg.png"
+                    alt="Logo Ultra PSG"
+                    width="60"
+                    class="rounded-circle bg-light shadow-sm border border-3 border-primary"
+                >
+                </div>
+
+                <!-- Bloc droit : liens rapides ou contact -->
+                <div class="d-flex flex-column flex-md-row align-items-center gap-5">
+                    <a href="#">
+                        <img src="/images/static/visitor/snapchat.png" alt="logo snapchat">
+                    </a>
+                    <a href="#">
+                        <img src="/images/static/visitor/instagram.png" alt="logo instagram">
+                    </a>
+                    <a href="#">
+                        <img src="/images/static/visitor/twitter.png" alt="logo twitter">
+                    </a>
+                </div>
+            </div>
         </footer>
     </body>
 </html>
