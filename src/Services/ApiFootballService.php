@@ -17,7 +17,7 @@ class ApiFootballService
 
     /**
      * Cette méthode retourne les prochains matchs du psg dans un tableau
-     * Un tableau dont les clés sont des string et les valeurs de n'importe quel type
+     * Un tableau dont les clés sont des string et les valeurs de n'importe quel type.
      *
      * @return array<string, mixed>|null
      */
