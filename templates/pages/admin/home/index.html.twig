@@ -8,78 +8,110 @@
     <h1 class="text-center my-3 display-5">Bienvenue {{app.user.firstName}} {{app.user.lastName}}</h1>
 
     <div class="container my-5">
-        <div class="row">
+        <div class="row g-4">
             <div class="col-lg-3 col-md-4">
-                <div class="card border-dark mb-3">
-                    <div class="card-header bg-transparent border-dark text-center">Toute les catégories</div>
-                    <div class="card-body text-dark">
-                        <p class="card-text text-center">{{categories_count}}</p>
+                <div class="card h-100 shadow rounded-4 border-0">
+                    <div class="card-header bg-dark text-white text-center rounded-top-4 border-0 py-3">
+                        {{ categories_count > 1 ? 'catégories' : 'catégorie' }}
                     </div>
-                    <div class="card-footer bg-transparent border-dark text-center">
-                        <a class="btn btn-small btn-dark" href="{{path('app_admin_category_index')}}">Consulter</a>
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                        <p class="display-5 fw-bold text-dark mb-2">{{categories_count}}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center pb-3">
+                        <a class="btn btn-outline-dark btn-sm rounded-pill px-4 fw-semibold" href="{{path('app_admin_category_index')}}">
+                            Consulter
+                        </a>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-4">
-                <div class="card border-dark mb-3">
-                    <div class="card-header bg-transparent border-dark text-center">Tous les articles</div>
-                    <div class="card-body text-dark">
-                        <p class="card-text text-center">{{posts_count}}</p>
+                <div class="card h-100 shadow rounded-4 border-0">
+                    <div class="card-header bg-dark text-white text-center rounded-top-4 border-0 py-3">
+                        {{ posts_count > 1 ? 'articles' : 'article' }}
                     </div>
-                    <div class="card-footer bg-transparent border-dark text-center">
-                        <a class="btn btn-small btn-dark" href="{{path('app_admin_post_index')}}">Consulter</a>
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                        <p class="display-5 fw-bold text-dark mb-2">{{posts_count}}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center pb-3">
+                        <a class="btn btn-outline-dark btn-sm rounded-pill px-4 fw-semibold" href="{{path('app_admin_post_index')}}">
+                            Consulter
+                        </a>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-4">
-                <div class="card border-dark mb-3">
-                    <div class="card-header bg-transparent border-dark text-center">Tous les tags</div>
-                    <div class="card-body text-dark">
-                        <p class="card-text text-center">{{tags_count}}</p>
+                <div class="card h-100 shadow rounded-4 border-0">
+                    <div class="card-header bg-dark text-white text-center rounded-top-4 border-0 py-3">
+                        {{ tags_count > 1 ? 'tags' : 'tag' }}
                     </div>
-                    <div class="card-footer bg-transparent border-dark text-center">
-                        <a class="btn btn-small btn-dark" href="{{path('app_admin_tag_index')}}">Consulter</a>
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                        <p class="display-5 fw-bold text-dark mb-2">{{tags_count}}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center pb-3">
+                        <a class="btn btn-outline-dark btn-sm rounded-pill px-4 fw-semibold" href="{{path('app_admin_tag_index')}}">
+                            Consulter
+                        </a>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-4">
-                <div class="card border-dark mb-3">
-                    <div class="card-header bg-transparent border-dark text-center">Tous les commentaires</div>
-                    <div class="card-body text-dark">
-                        <p class="card-text text-center">{{comments_count}}</p>
+                <div class="card h-100 shadow rounded-4 border-0">
+                    <div class="card-header bg-dark text-white text-center rounded-top-4 border-0 py-3">
+                        {{ comments_count > 1 ? 'commentaires' : 'commentaire' }}
                     </div>
-                    <div class="card-footer bg-transparent border-dark text-center">
-                        <a class="btn btn-small btn-dark" href="{{path('app_admin_comment_index')}}">Consulter</a>
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                        <p class="display-5 fw-bold text-dark mb-2">{{comments_count}}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center pb-3">
+                        <a class="btn btn-outline-dark btn-sm rounded-pill px-4 fw-semibold" href="{{path('app_admin_comment_index')}}">
+                            Consulter
+                        </a>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-4">
-                <div class="card border-dark mb-3">
-                    <div class="card-header bg-transparent border-dark text-center">Tous les utilisateurs</div>
-                    <div class="card-body text-dark">
-                        <p class="card-text text-center">{{users_count}}</p>
+                <div class="card h-100 shadow rounded-4 border-0">
+                    <div class="card-header bg-dark text-white text-center rounded-top-4 border-0 py-3">
+                        {{ users_count > 1 ? 'Utilisateurs' : 'Utilisateur' }}
                     </div>
-                    <div class="card-footer bg-transparent border-dark text-center">
-                        <a class="btn btn-small btn-dark" href="{{path('app_admin_user_index')}}">Consulter</a>
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                        <p class="display-5 fw-bold text-dark mb-2">{{users_count}}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center pb-3">
+                        <a class="btn btn-outline-dark btn-sm rounded-pill px-4 fw-semibold" href="{{path('app_admin_user_index')}}">
+                            Consulter
+                        </a>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-4">
-                <div class="card border-dark mb-3">
-                    <div class="card-header bg-transparent border-dark text-center">Tous les contacts</div>
-                    <div class="card-body text-dark">
-                        <p class="card-text text-center">{{contacts_count}}</p>
+                <div class="card h-100 shadow rounded-4 border-0">
+                    <div class="card-header bg-dark text-white text-center rounded-top-4 border-0 py-3">
+                        {{ contacts_count > 1 ? 'contacts' : 'contact' }}
                     </div>
-                    <div class="card-footer bg-transparent border-dark text-center">
-                        <a class="btn btn-small btn-dark" href="{{path('app_admin_contact_index')}}">Consulter</a>
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                        <p class="display-5 fw-bold text-dark mb-2">{{contacts_count}}</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0 text-center pb-3">
+                        <a class="btn btn-outline-dark btn-sm rounded-pill px-4 fw-semibold" href="{{path('app_admin_contact_index')}}">
+                            Consulter
+                        </a>
                     </div>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-4">
-                <div class="card border-dark mb-3">
-                    <div class="card-header bg-transparent border-dark text-center">Tous les likes</div>
-                    <div class="card-body text-dark">
-                        <p class="card-text text-center">{{likes_count}}</p>
+                <div class="card h-100 shadow rounded-4 border-0">
+                    <div class="card-header bg-dark text-white text-center rounded-top-4 border-0 py-3">
+                        {{ likes_count > 1 ? 'likes' : 'like' }}
+                    </div>
+                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                        <p class="display-5 fw-bold text-dark mb-2">{{likes_count}}</p>
                     </div>
                 </div>
             </div>
