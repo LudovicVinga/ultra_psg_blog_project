@@ -75,7 +75,17 @@
                             <div>
                                 <div class="shadow p-4">
                                     <p>
-                                        <strong>{{comment.user.firstName}} {{comment.user.lastName}}</strong>
+                                    {% set nbComments = comment.user.comments|length %}
+                                        <strong>{{ comment.user.firstName }} {{ comment.user.lastName }}</strong>
+                                    {% set nbComments = comment.user.comments|length %}
+                                    
+                                    {% if nbComments >= 7 %}
+                                        <span class="badge bg-warning text-dark ms-2">Légende du Parc</span>
+                                    {% elseif nbComments > 3 %}
+                                        <span class="badge bg-danger ms-2">Ultra Rouge & Bleu</span>
+                                    {% elseif nbComments > 0 %}
+                                        <span class="badge bg-primary ms-2">Supporter PSG</span>
+                                    {% endif %}
                                     </p>
                                     <p>
                                         <small>{{comment.activatedAt ? comment.activatedAt|ago : ''}}</small>

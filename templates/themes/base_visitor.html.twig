@@ -87,13 +87,6 @@
                     </a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link px-3 fw-semibold rounded-pill {{ pathClient == path('app_visitor_teams') ? 'active text-danger bg-primary bg-opacity-10' : 'text-secondary' }}"
-                        {{ pathClient == path('app_visitor_teams') ? 'aria-current="page"' : '' }}
-                        href="{{ path('app_visitor_teams') }}#ranking">
-                        L'effectif
-                    </a>
-                    </li>
-                    <li class="nav-item">
                     <a class="nav-link px-3 fw-semibold rounded-pill {{ pathClient == path('app_visitor_contact_create') ? 'active text-danger bg-primary bg-opacity-10' : 'text-secondary' }}"
                         {{ pathClient == path('app_visitor_contact_create') ? 'aria-current="page"' : '' }}
                         href="{{ path('app_visitor_contact_create') }}">
@@ -147,17 +140,16 @@
         </main>
 
         {# Footer #}
-
-        <footer class="bg-white shadow-lg rounded-top-4 py-4 mt-5">
+        <footer class="bg-primary shadow-lg py-4 mt-5">
             <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
                 <!-- Bloc gauche -->
                 <div class="text-center text-md-start flex-grow-1">
-                <p class="mb-0 fs-6 text-secondary">
+                <p class="mb-0 fs-6 text-white">
                     &copy; {{ "now"|date("Y") }} Ultra PSG &bull; Blog de fans du Paris Saint-Germain
                 </p>
                 </div>
                 
-                <!-- Logo au centre -->
+                <!-- Logo -->
                 <div class="mx-md-4">
                 <img
                     src="/images/static/visitor/logo-ultra-psg.png"
@@ -167,7 +159,7 @@
                 >
                 </div>
 
-                <!-- Bloc droit : liens rapides ou contact -->
+                <!-- Bloc droit  -->
                 <div class="d-flex flex-column flex-md-row align-items-center gap-5">
                     <a href="#">
                         <img src="/images/static/visitor/snapchat.png" alt="logo snapchat">

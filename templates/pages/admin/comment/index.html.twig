@@ -68,7 +68,30 @@
                                 </div>
                             </form>
                         </td>
-                        <td>{{comment.content}}</td>
+                        <td> 
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#comment-backdrop-{{comment.id}}">
+                            Consulter
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="comment-backdrop-{{comment.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h1 class="modal-title fs-5" id="staticBackdropLabel">Le message de {{comment.user.firstName}} {{comment.user.lastName}}</h1>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {{comment.content|nl2br}}
+                                        </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
                         <td>
                             <form class="d-inline" action="{{path('app_admin_comment_delete', {'id': comment.id})}}" method="post">
                                 <input type="hidden" name="csrf_token" value="{{csrf_token('delete-comment-'~comment.id)}}">
