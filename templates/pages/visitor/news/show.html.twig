@@ -77,7 +77,6 @@
                                     <p>
                                     {% set nbComments = comment.user.comments|length %}
                                         <strong>{{ comment.user.firstName }} {{ comment.user.lastName }}</strong>
-                                    {% set nbComments = comment.user.comments|length %}
                                     
                                     {% if nbComments >= 7 %}
                                         <span class="badge bg-warning text-dark ms-2">Légende du Parc</span>

@@ -55,9 +55,9 @@
                         <td>{{category.createdAt|date()}}</td>
                         <td>{{category.updatedAt|date()}}</td>
                         <td>
-                            <a href="{{path('app_admin_category_edit', {'id': category.id})}}" class="btn btn-sm btn-secondary">Modifier</a>
+                            <a href="{{path('app_admin_category_edit', {'id': category.id})}}" class="btn btn-sm btn-secondary m-1">Modifier</a>
 
-                            <form class="d-inline" action="{{path('app_admin_category_delete', {'id': category.id})}}" method="post">
+                            <form class="d-inline m-1" action="{{path('app_admin_category_delete', {'id': category.id})}}" method="post">
                                 <input type="hidden" name="csrf_token" value="{{csrf_token('delete-category-'~category.id)}}">
                                 <input type="submit" class="btn btn-sm btn-danger" value="Supprimer" onclick="return confirm('Attention ! En supprimant cette catégorie, vous supprimerez tous les articles associés. Confirmez ?')">
                             </form>

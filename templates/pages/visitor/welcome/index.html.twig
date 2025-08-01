@@ -99,8 +99,73 @@
         </div>
     </section>
 
+    {# Last comment section #}
+    <section class="latest-comments my-5 py-5" 
+    style="background: linear-gradient(135deg, #d90429 0%, #fff 50%, #003471 100%); border-radius: 12px;">
+        <div class="container">
+            <h2 class="text-center mb-4 text-white fw-bold" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6);">
+                Ils en parlent !
+            </h2>
+
+            {% if latestComments|length > 0 %}
+                <ul class="list-unstyled row g-4 mb-2">
+                    {% for comment in latestComments %}
+                        <li class="col-12 col-md-6 col-lg-4">
+                            <div class="card h-100 shadow-sm rounded-3" style="background: rgba(255, 255, 255, 0.95);">
+                                <div class="card-body d-flex flex-column">
+                                    <div class="mb-3 d-flex align-items-center">
+
+                                        <div>
+                                            <strong class="d-block">{{ comment.user.firstName }} {{ comment.user.lastName }}</strong>
+                                            <small class="text-muted" title="{{ comment.createdAt|date('c') }}">
+                                                le {{ comment.createdAt|date('d/m/Y H:i') }}
+                                            </small>
+                                        </div>
+
+                                        {# Calcul le nombre de commentaires de l'utilisateur #}
+                                        {% set nbComments = comment.user.comments|length %}
+
+                                        <div class="ms-auto">
+                                            {% if nbComments >= 7 %}
+                                                <span class="badge rounded-pill bg-warning text-dark px-3 py-2 fw-semibold">
+                                                    Légende du Parc
+                                                </span>
+                                            {% elseif nbComments > 3 %}
+                                                <span class="badge rounded-pill bg-danger px-3 py-2 fw-semibold">
+                                                    </i>Ultra Rouge & Bleu
+                                                </span>
+                                            {% elseif nbComments > 0 %}
+                                                <span class="badge rounded-pill bg-primary px-3 py-2 fw-semibold">
+                                                    Supporter PSG
+                                                </span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="card-text fst-italic flex-grow-1">{{ comment.content|u.truncate(40, '...') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="text-center text-white fw-semibold">Aucun commentaire pour le moment.</p>
+            {% endif %}
+
+            <h2 class="text-center my-5 text-white fw-bold" style="text-shadow: 0 2px 8px rgba(0,0,0,0.6);">
+                Toi aussi tu veux donner ton avis ?
+            </h2>
+            <div class="d-flex justify-content-center mt-5">
+                <a href="{{ app.user ? path('app_visitor_news') : path('app_register') }}" class="btn btn-lg btn-primary rounded-pill px-5 fw-semibold shadow-sm">
+                C'est ici
+                </a>
+            </div>
+        </div>
+    </section>
+
     {# About section #}
-    <section class="my-5 py-5 bg-white">
+    <section class="my-5 py-5 bg-white" id="about-me">
         <div class="text-center">
             <h1 class="text-danger display-5 fw-bold fst-italic">ULTRA PSG c'est quoi ?</h1>
             <h4 class="text-primary">Une initiative pour les passionnés</h4>
@@ -126,39 +191,4 @@
         </div>
     </section>
 
-    {# Next match section - api football service #}
-    <section>
-        <div class="text-center">
-            <h1 class="text-danger display-5 fw-bold fst-italic">Prochaine rencontre</h1>
-            <h4 class="text-primary">Match à venir</h4>
-        </div>
-
-        <div>
-            {% if nextMatch %}
-            <div class="card shadow-sm rounded p-3 my-4 text-center bg-light">
-                <h5 class="mb-3">Prochain match du PSG</h5>
-                <div>
-                <span class="fw-semibold">{{ nextMatch.teams.home.name }}</span>
-                -
-                <span class="fw-semibold">{{ nextMatch.teams.away.name }}</span>
-                </div>
-                <div class="mt-2">
-                <small class="text-muted">
-                    Le {{ nextMatch.fixture.date|date('d/m/Y à H:i') }}
-                    {% if nextMatch.league.name %}
-                    <br/>
-                    <span class="badge bg-primary bg-opacity-10 text-primary">{{ nextMatch.league.name }}</span>
-                    {% endif %}
-                    {% if nextMatch.fixture.venue.name %}
-                    <br/>
-                    <span class="small">{{ nextMatch.fixture.venue.name }}</span>
-                    {% endif %}
-                </small>
-                </div>
-            </div>
-            {% else %}
-            <div class="alert alert-info mt-4 text-center">La saison {{season}} est terminée.</div>
-            {% endif %}
-        </div>
-    </section>
 {% endblock %}

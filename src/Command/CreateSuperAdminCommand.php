@@ -67,6 +67,7 @@ class CreateSuperAdminCommand extends Command
     {
         $this->io->title('Creation du super administrateur');
 
+        // On converti l'argument en string car de base la methode nous retourne mixed mais l'email est un string
         $email = (string) $input->getArgument('email');
         $plainPassword = (string) $input->getArgument('password');
 
@@ -93,9 +94,11 @@ class CreateSuperAdminCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        // On converti l'argument en string car de base la methode nous retourne mixed mais l'email est un string
         $email = (string) $input->getArgument('email');
         $plainPassword = (string) $input->getArgument('password');
 
+        // On veut créer le superAdmin
         $superAdmin = new User();
 
         $superAdmin->setFirstName('Luis');
