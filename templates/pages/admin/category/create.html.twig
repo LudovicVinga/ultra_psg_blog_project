@@ -12,7 +12,7 @@
             <div class="col-md-6 mx-auto">
                 {{ form_start(form) }}
                     <div class="mb-3">
-                        <label for="admin_category_form_name">Nom</label>
+                        <label for="admin_category_form_name">Nom <span class="text-danger">*</span></label>
                         <div class="text-danger">{{ form_errors(form.name) }}</div>
                         {{ form_widget(form.name, {'attr': {'class':'form-control my-3', 'autofocus':'autofocus'}}) }}
                     </div>

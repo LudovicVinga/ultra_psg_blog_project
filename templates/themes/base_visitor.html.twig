@@ -79,6 +79,24 @@
                         Accueil
                     </a>
                     </li>
+
+                    {% set accueilPath = path('app_visitor_welcome') %}
+
+                    {% if pathClient == accueilPath %}
+                        {% set hrefLink = '#about-me' %}
+                    {% else %}
+                        {% set hrefLink = accueilPath ~ '#about-me' %}
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <a class="nav-link px-3 fw-semibold rounded-pill text-secondary"
+                        {{ pathClient == accueilPath ? 'aria-current="page"' : '' }}
+                        href="{{ hrefLink }}">
+                            À Propos
+                        </a>
+                    </li>
+
+
                     <li class="nav-item">
                     <a class="nav-link px-3 fw-semibold rounded-pill {{ pathClient == path('app_visitor_news') ? 'active text-danger bg-primary bg-opacity-10' : 'text-secondary' }}"
                         {{ pathClient == path('app_visitor_news') ? 'aria-current="page"' : '' }}
@@ -139,39 +157,53 @@
             {% block main %}{% endblock %}
         </main>
 
-        {# Footer #}
-        <footer class="bg-primary shadow-lg py-4 mt-5">
-            <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
-                <!-- Bloc gauche -->
-                <div class="text-center text-md-start flex-grow-1">
-                <p class="mb-0 fs-6 text-white">
-                    &copy; {{ "now"|date("Y") }} Ultra PSG &bull; Blog de fans du Paris Saint-Germain
-                </p>
+
+        <footer class="bg-primary text-white py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                
+                <div class="col-12 col-md-3 mb-3 mb-md-0 text-center text-md-start">
+                    <img src="/images/static/visitor/logo-ultra-psg.png"
+                        alt="Logo du site ultra psg"
+                        class="rounded-circle"
+                        width="60"
+                        height="60">
                 </div>
                 
-                <!-- Logo -->
-                <div class="mx-md-4">
-                <img
-                    src="/images/static/visitor/logo-ultra-psg.png"
-                    alt="Logo Ultra PSG"
-                    width="60"
-                    class="rounded-circle bg-light shadow-sm border border-3 border-primary"
-                >
+                <div class="col-12 col-md-6 mb-3 mb-md-0">
+                    <ul class="nav justify-content-center">
+                    <li class="nav-item">
+                        <a href="{{path('app_visitor_welcome')}}" class="nav-link text-white px-3">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{path('app_visitor_news')}}" class="nav-link text-white px-3">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{path('app_visitor_contact_create')}}" class="nav-link text-white px-3">Contact</a>
+                    </li>
+                    </ul>
                 </div>
-
-                <!-- Bloc droit  -->
-                <div class="d-flex flex-column flex-md-row align-items-center gap-5">
-                    <a href="#">
+                
+                <div class="col-12 col-md-3 text-center text-md-end small">
+                    <div class="mb-2">
+                    
+                    <a href="#" class="text-white mx-1">
                         <img src="/images/static/visitor/snapchat.png" alt="logo snapchat">
                     </a>
-                    <a href="#">
+                    <a href="#" class="text-white mx-1">
                         <img src="/images/static/visitor/instagram.png" alt="logo instagram">
                     </a>
-                    <a href="#">
+                    <a href="#" class="text-white mx-1">
                         <img src="/images/static/visitor/twitter.png" alt="logo twitter">
                     </a>
+                    </div>
+                    © 2025 UltraPSG
+                </div>
                 </div>
             </div>
         </footer>
+
+
+
     </body>
 </html>

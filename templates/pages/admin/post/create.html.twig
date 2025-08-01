@@ -26,12 +26,12 @@ $(document).ready(function() {
             <div class="col-md-10 mx-auto">
                 {{ form_start(form) }}
                     <div class="mb-3">
-                        <label for="admin_post_form_title">Titre</label>
+                        <label for="admin_post_form_title">Titre <span class="text-danger">*</span></label>
                         <div class="text-danger">{{ form_errors(form.title) }}</div>
                         {{ form_widget(form.title, {'attr': {'class':'form-control', 'autofocus':'autofocus'}}) }}
                     </div>
                     <div class="mb-3">
-                        <label for="admin_post_form_category">Catégorie</label>
+                        <label for="admin_post_form_category">Catégorie <span class="text-danger">*</span></label>
                         <div class="text-danger">{{ form_errors(form.category) }}</div>
                         {{ form_widget(form.category, {'attr': {'class':'form-control'}}) }}
                     </div>
@@ -41,7 +41,7 @@ $(document).ready(function() {
                         {{form_widget(form.tags, {'attr': {'class':'form-control'}})}}
                     </div>
                     <div class="mb-3">
-                        <label for="admin_post_form_description">Description</label>
+                        <label for="admin_post_form_description">Description <span class="text-danger">*</span></label>
                         <div class="text-danger">{{ form_errors(form.description) }}</div>
                         {{ form_widget(form.description, {'attr': {'class':'form-control'}}) }}
                     </div>
@@ -56,7 +56,7 @@ $(document).ready(function() {
                         {{ form_widget(form.imageFile, {'attr': {'class':'form-control'}}) }}
                     </div>
                     <div class="mb-3">
-                        <label for="admin_post_form_content">Contenu</label>
+                        <label for="admin_post_form_content">Contenu <span class="text-danger">*</span></label>
                         <div class="text-danger">{{ form_errors(form.content) }}</div>
                         {{ form_widget(form.content, {'attr': {'class':'form-control', 'rows':10}}) }}
                     </div>
